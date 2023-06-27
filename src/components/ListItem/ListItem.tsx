@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import type { ObjectWithRoleAndId } from '../../types';
 import { isInvite, isTeamMember } from '../../types';
-import chevronRightPic from './assets/chevron_right.svg';
+import chevronRightPic from '../../assets/chevron_right.svg';
 
 export const ListItem = ({ itemData }: { itemData: ObjectWithRoleAndId }) => {
   const [isActive, toggleActive] = useState(false);
