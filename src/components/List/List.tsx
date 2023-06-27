@@ -1,5 +1,5 @@
 import { ObjectWithRoleAndId } from '../../types';
-import { ListItem } from '../ListItem/ListItem';
+import { ListItem } from '../ListItem';
 
 export const List = ({ teamDataArr }: { teamDataArr: ObjectWithRoleAndId[] }) => {
   return (
