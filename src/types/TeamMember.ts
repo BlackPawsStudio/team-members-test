@@ -14,16 +14,3 @@ export interface TeamMember {
   role: Role;
 }
 
-export const isTeamMember = (object: unknown): object is TeamMember => {
-  if (
-    object &&
-    typeof object === "object" &&
-    "id" in object &&
-    "status" in object &&
-    "user" in object &&
-    "role" in object &&
-    Object.keys(object).length === 4
-  )
-    return true;
-  return false;
-};
