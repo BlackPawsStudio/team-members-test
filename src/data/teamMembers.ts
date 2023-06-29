@@ -1,4 +1,6 @@
-export const adminMembers = [
+import { TeamMemberType } from '~/types';
+
+export const adminMembers: TeamMemberType[] = [
   {
     id: 5895475095928832,
     status: 'request',
@@ -73,7 +75,7 @@ export const adminMembers = [
   },
 ];
 
-export const standardMembers = [
+export const standardMembers: TeamMemberType[] = [
   {
     id: 7100765782933504,
     status: 'request',

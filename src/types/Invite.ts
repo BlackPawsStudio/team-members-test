@@ -1,6 +1,6 @@
 import { Role } from '.';
 
-export interface Invite {
+export interface InviteType {
   id: number;
   phone: string;
   role: Role;

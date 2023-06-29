@@ -1,26 +1,30 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import type { ObjectWithRoleAndId } from '../../types';
-import { isInvite, isTeamMember } from '../../types';
+import type { InviteType, TeamMemberType } from '../../types';
 import chevronRightPic from '../../assets/chevron_right.svg';
 
-export const ListItem = ({ itemData }: { itemData: ObjectWithRoleAndId }) => {
+interface ListItemProps {
+  invite?: InviteType;
+  member?: TeamMemberType;
+}
+
+export const ListItem = ({ invite, member }: ListItemProps) => {
   const [isActive, toggleActive] = useState(false);
   return (
     <li
       onClick={() => toggleActive(!isActive)}
       className={clsx(
         'team__list__item',
-        isInvite(itemData) && 'invite',
-        isTeamMember(itemData) && 'member',
+        invite && 'invite',
+        member && 'member',
         isActive && 'active'
       )}
     >
       <span className="team__list__item__title">
-        {isInvite(itemData) && itemData.phone}
-        {isTeamMember(itemData) && `${itemData.user.name} ${itemData.user.lastName}`}
+        {invite && invite.phone}
+        {member && `${member.user.name} ${member.user.lastName}`}
       </span>
-      {isInvite(itemData) && <span className="team__list__item__invite-flag">Invited</span>}
+      {invite && <span className="team__list__item__invite-flag">Invited</span>}
       <img
         src={chevronRightPic}
         alt="chevron"

@@ -1,16 +1,10 @@
-import { Role, UserShortData } from ".";
+import { Role, UserShortData } from '.';
 
-export type Status =
-  | "request"
-  | "pending"
-  | "approved"
-  | "declined"
-  | "invited";
+export type Status = 'request' | 'pending' | 'approved' | 'declined' | 'invited';
 
-export interface TeamMember {
+export interface TeamMemberType {
   id: number;
   status: Status;
   user: UserShortData;
   role: Role;
 }
-

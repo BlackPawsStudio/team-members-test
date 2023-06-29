@@ -1,4 +1,6 @@
-export const adminInvites = [
+import { InviteType } from '~/types';
+
+export const adminInvites: InviteType[] = [
   {
     id: 4006124577619968,
     phone: '+081 7154587',
@@ -31,7 +33,7 @@ export const adminInvites = [
   },
 ];
 
-export const standardInvites = [
+export const standardInvites: InviteType[] = [
   {
     id: 6494714530365440,
     phone: '+524 0403131',
