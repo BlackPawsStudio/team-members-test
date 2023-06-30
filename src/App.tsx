@@ -1,25 +1,22 @@
-import { useGetTeamMembersQuery, useGetInvitesQuery } from './hooks';
 import adminPic from './assets/admin_pan.svg';
 import standardPic from './assets/standard_pan.svg';
-import { Loader } from './components/Loader';
 import { List } from './components/List';
-import { useEffect, useState } from 'react';
-import { ObjectWithRoleAndId } from './types';
+import { Spinner } from './components/Spinner';
+import {
+  useGetAdminInvitesQuery,
+  useGetAdminMembersQuery,
+  useGetStandardInvitesQuery,
+  useGetStandardMembersQuery,
+} from './hooks';
 
 const App = () => {
-  const { data: members, isLoading: loadingMembers } = useGetTeamMembersQuery();
-  const { data: invites, isLoading: loadingInvites } = useGetInvitesQuery();
+  const { data: adminInvitesData, isLoading: isAdminInvitesLoading } = useGetAdminInvitesQuery();
+  const { data: adminMembersData, isLoading: isAdminMembersLoading } = useGetAdminMembersQuery();
 
-  const [adminMembers, standardMembers] = members ?? [[], []];
-  const [adminInvites, standardInvites] = invites ?? [[], []];
-
-  const [adminsArr, setAdminsArr] = useState<ObjectWithRoleAndId[]>([]);
-  const [standardArr, setStandardArr] = useState<ObjectWithRoleAndId[]>([]);
-
-  useEffect(() => {
-    setAdminsArr(adminMembers.concat(adminInvites));
-    setStandardArr(standardMembers.concat(standardInvites));
-  }, [adminMembers, adminInvites, standardMembers, standardInvites]);
+  const { data: standardInvitesData, isLoading: isStandardInvitesLoading } =
+    useGetStandardInvitesQuery();
+  const { data: standardMembersData, isLoading: isStandardMembersLoading } =
+    useGetStandardMembersQuery();
 
   return (
     <div className="team">
@@ -28,14 +25,26 @@ const App = () => {
           <img className="team__title__image" src={adminPic} alt="admin" />
           <span>Administrators</span>
         </div>
-        {!(loadingMembers || loadingInvites) ? <List teamDataArr={adminsArr} /> : <Loader />}
+        {!(isAdminMembersLoading && isAdminInvitesLoading) &&
+        adminMembersData &&
+        adminInvitesData ? (
+          <List members={adminMembersData} invites={adminInvitesData} />
+        ) : (
+          <Spinner />
+        )}
       </section>
       <section className="team__section">
         <div className="team__title">
           <img className="team__title__image" src={standardPic} alt="standard" />
           <span>Standard Users</span>
         </div>
-        {!(loadingMembers || loadingInvites) ? <List teamDataArr={standardArr} /> : <Loader />}
+        {!(isStandardMembersLoading && isStandardInvitesLoading) &&
+        standardMembersData &&
+        standardInvitesData ? (
+          <List members={standardMembersData} invites={standardInvitesData} />
+        ) : (
+          <Spinner />
+        )}
       </section>
     </div>
   );

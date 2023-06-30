@@ -1,2 +1,2 @@
-export * from "./useGetInvites";
-export * from "./useGetTeamMembers";
+export * from './useGetInvites';
+export * from './useGetMembers';
