@@ -1,4 +1,4 @@
-import { InviteType } from '~/types';
+import { InviteType } from '../types';
 
 export const adminInvites: InviteType[] = [
   {

@@ -1,4 +1,4 @@
-import { TeamMemberType } from '~/types';
+import { TeamMemberType } from '../types';
 
 export const adminMembers: TeamMemberType[] = [
   {
