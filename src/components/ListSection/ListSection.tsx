@@ -1,28 +1,12 @@
-import { InviteType, TeamMemberType } from '~/types';
-import { List } from '../List/List';
-import adminPic from '../../assets/admin_pan.svg';
-import standardPic from '../../assets/standard_pan.svg';
+import { ListSectionTitle } from '../ListSectionTitle';
+import { ReactNode } from 'react';
 
 interface ListSectionProps {
-  isAdmin?: boolean;
-  data: {
-    members: TeamMemberType[];
-    invites: InviteType[];
-  };
+  children: ReactNode | ReactNode[];
 }
 
-export const ListSection = ({ isAdmin, data }: ListSectionProps) => {
-  return (
-    <section className="team__section">
-      <ListSection.Title isAdmin={isAdmin} />
-      <List members={data.members} invites={data.invites} />
-    </section>
-  );
+export const ListSection = ({ children }: ListSectionProps) => {
+  return <section className="team__section">{children}</section>;
 };
 
-ListSection.Title = ({ isAdmin }: { isAdmin?: boolean }) => (
-  <div className="team__title">
-    <img className="team__title__image" src={isAdmin ? adminPic : standardPic} alt="admin" />
-    <span>Administrators</span>
-  </div>
-);
+ListSection.Title = ListSectionTitle;

@@ -1,4 +1,3 @@
-import standardPic from './assets/standard_pan.svg';
 import { List } from './components/List';
 import { ListSection } from './components/ListSection';
 import { Spinner } from './components/Spinner';
@@ -21,12 +20,20 @@ const App = () => {
   return (
     <div className="team">
       {!(isAdminMembersLoading && isAdminInvitesLoading) && adminMembersData && adminInvitesData ? (
-        <ListSection isAdmin data={{ members: adminMembersData, invites: adminInvitesData }} />
+        <ListSection>
+          <ListSection.Title isAdmin />
+          <List members={adminMembersData} invites={adminInvitesData} />
+        </ListSection>
       ) : (
         <Spinner />
       )}
-      {!(isStandardMembersLoading && isStandardInvitesLoading) && standardMembersData && standardInvitesData ? (
-        <ListSection data={{ members: standardMembersData, invites: standardInvitesData }} />
+      {!(isStandardMembersLoading && isStandardInvitesLoading) &&
+      standardMembersData &&
+      standardInvitesData ? (
+        <ListSection>
+          <ListSection.Title />
+          <List members={standardMembersData} invites={standardInvitesData} />
+        </ListSection>
       ) : (
         <Spinner />
       )}
