@@ -7,6 +7,8 @@ import {
   useGetStandardInvitesQuery,
   useGetStandardMembersQuery,
 } from './hooks';
+import adminPic from './assets/admin_pan.svg';
+import standardPic from './assets/standard_pan.svg';
 
 const App = () => {
   const { data: adminInvitesData, isLoading: isAdminInvitesLoading } = useGetAdminInvitesQuery();
@@ -21,7 +23,7 @@ const App = () => {
     <div className="team">
       {!(isAdminMembersLoading && isAdminInvitesLoading) && adminMembersData && adminInvitesData ? (
         <ListSection>
-          <ListSection.Title isAdmin />
+          <ListSection.Title text="Administrators" icon={adminPic} />
           <List members={adminMembersData} invites={adminInvitesData} />
         </ListSection>
       ) : (
@@ -31,7 +33,7 @@ const App = () => {
       standardMembersData &&
       standardInvitesData ? (
         <ListSection>
-          <ListSection.Title />
+          <ListSection.Title text="Standard Users" icon={standardPic} />
           <List members={standardMembersData} invites={standardInvitesData} />
         </ListSection>
       ) : (

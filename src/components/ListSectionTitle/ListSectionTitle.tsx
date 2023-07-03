@@ -1,9 +1,11 @@
-import adminPic from '../../assets/admin_pan.svg';
-import standardPic from '../../assets/standard_pan.svg';
+interface ListSectionTitleProps {
+  text: string;
+  icon: string;
+}
 
-export const ListSectionTitle = ({ isAdmin }: { isAdmin?: boolean }) => (
+export const ListSectionTitle = ({ text, icon }: ListSectionTitleProps) => (
   <div className="team__title">
-    <img className="team__title__image" src={isAdmin ? adminPic : standardPic} alt="admin" />
-    <span>Administrators</span>
+    <img className="team__title__image" src={icon} alt="admin" />
+    <span>{text}</span>
   </div>
 );
